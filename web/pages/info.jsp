@@ -21,6 +21,6 @@
         out.println("</ui>");
     } else out.println("<p>No order!</p>");
 %>
-<button onclick="location.href='..'">continue order</button>
+<button onclick="location.href='/main'">continue order</button>
 </body>
 </html>

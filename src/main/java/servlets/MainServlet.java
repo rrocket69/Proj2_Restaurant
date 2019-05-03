@@ -1,5 +1,6 @@
 package servlets;
 
+import util.Recipes;
 import model.Order;
 import services.DishInputter;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainServlet extends HttpServlet {
 
@@ -20,16 +23,17 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         Order order = Order.getInstance();
+        Map<String, Integer> mapDishes = new HashMap<>();
+
         order.setName(req.getParameter("name"));
-        int[] dishes = {
-                Integer.parseInt(req.getParameter("fourCheeses")),
-                Integer.parseInt(req.getParameter("classical")),
-                Integer.parseInt(req.getParameter("margarita"))
-        };
-        req.setAttribute("missing",Order.getInstance().getListUnable());
-        new DishInputter(order).insert(dishes);
+        mapDishes.put(Recipes.FourCheeses, Integer.parseInt(req.getParameter(Recipes.FourCheeses)));
+        mapDishes.put(Recipes.Classical, Integer.parseInt(req.getParameter(Recipes.Classical)));
+        mapDishes.put(Recipes.Margarita, Integer.parseInt(req.getParameter(Recipes.Margarita)));
+        order.getListUnable().clear();
+        DishInputter.insert(mapDishes);
+
+        req.setAttribute("missing", order.getListUnable());
         doGet(req, resp);
     }
 }

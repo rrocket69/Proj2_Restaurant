@@ -12,13 +12,13 @@
         <input type="text" name="name" value="User"><br/>
     </label>
     <label>Amount of Four Cheeses:
-        <input type="number" name="fourCheeses" value=0><br/>
+        <input type="number" name="FourCheeses" value=0><br/>
     </label>
     <label>Amount of Classical:
-        <input type="number" name="classical" value=0><br/>
+        <input type="number" name="Classical" value=0><br/>
     </label>
     <label>Amount of Margaritas:
-        <input type="number" name="margarita" value=0><br/>
+        <input type="number" name="Margarita" value=0><br/>
     </label>
     <button type="submit">Submit</button>
 </form>

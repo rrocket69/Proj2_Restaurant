@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Singleton pattern
+ */
 public class Order {
     private static final Order instance = new Order();
 
@@ -29,6 +32,7 @@ public class Order {
     public void addDish(String nameDish) {
         listDishes.add(nameDish);
     }
+
 
     public List<String> getListUnable() {
         return listUnable;

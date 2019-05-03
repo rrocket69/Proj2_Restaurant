@@ -6,7 +6,7 @@
 <body>
 <h2>Choose Location</h2>
 
-<button onclick="location.href='/main'">Back to main</button>
-<button onclick="location.href='/info'">Back to info</button>
+<button onclick="location.href='/main'">To main</button>
+<button onclick="location.href='/info'">To info</button>
 </body>
 </html>

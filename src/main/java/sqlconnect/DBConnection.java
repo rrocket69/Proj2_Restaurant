@@ -1,6 +1,6 @@
 package sqlconnect;
 
-import entities.Ingridient;
+import util.Ingridient;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,9 +20,11 @@ public class DBConnection {
     private static final String USER = "root";
     private static final String PASSWORD = "asdfghqwe321";
 
-    private static final DBConnection instance = new DBConnection();
+    private static DBConnection instance = new DBConnection();
+    public static DBConnection getInstance() {
+        return instance;
+    }
 
-    //    private Statement statement;
     private ResultSet resultSet;
 
     private DBConnection() {
@@ -36,16 +38,12 @@ public class DBConnection {
     }
 
     public boolean getRecordsFromDB(Map<Ingridient, Integer> desc) {
-//        Map<Ingridient,Integer> temp = new HashMap<>();
-
+        Ingridient ingridient;
+        int amount;
         try {
-            Ingridient ingridient;
-            int amount;
             while (resultSet.next()) {
                 ingridient = Ingridient.valueOf(resultSet.getString("ingridient"));
-                System.out.println(ingridient);
                 amount = resultSet.getInt("amount");
-                System.out.println(amount);
                 if (desc.containsKey(ingridient) && amount < desc.get(ingridient))
                     return false;
 //                temp.put(ingridient,amount-desc.get(ingridient));
@@ -55,11 +53,6 @@ public class DBConnection {
             e.printStackTrace();
         }
         return true;
-//        return temp;
-    }
-
-    public static DBConnection getInstance() {
-        return instance;
     }
 
     // Used to add records to database, first created table im MySQL
