@@ -1,12 +1,18 @@
+import model.entities.enums.Ingridient;
+import model.entities.enums.Recipes;
 import org.junit.Test;
 
 public class Asap_Testing {
     @Test
     public void test1() {
-//        System.out.println(DBConnection.getInstance().getRecordsFromDB(RecipesFlyweightFactory.FourCheeses.getRecipesMap()));
+        for (Recipes recipes: Recipes.values()) {
+            System.out.println(recipes.getComposition());
+        }
     }
     @Test
     public void test2(){
-//        System.out.println(Arrays.asList(RecipesFlyweightFactory.FourCheeses.getRecipesMap()));
+        for (Ingridient recipes: Ingridient.values()) {
+            System.out.println(recipes.getAmount());
+        }
     }
 }

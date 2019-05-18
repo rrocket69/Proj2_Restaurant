@@ -1,4 +1,5 @@
-<%@ page import="java.util.List" %>
+<%@ page import="model.entities.order.Order" %>
+<%@ page import="model.entities.orderable.Orderable" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,19 +8,24 @@
 <body>
 <h2>Thank you for your order!</h2>
 <%
-    List<String> nameDishes = (List<String>) request.getAttribute("nameDishes");
-    String name = (String) request.getAttribute("name");
-    if (name != null) {
-        out.print("<label>" + name + "</label>");
+    Order order = (Order) request.getAttribute("order");
+    if (order.getName() != null) {
+        out.print("<label>" + order.getName() + "</label>");
     }
 
-    if (nameDishes != null && !nameDishes.isEmpty()) {
+    if (order.getListDishes() != null && !order.getListDishes().isEmpty()) {
         out.println("<ui>");
-        for (String s : nameDishes) {
-            out.println("<li>" + s + "</li>");
+        for (Orderable s : order.getListDishes()) {
+            out.print("<li>"
+                    + s.getRecipe()
+                    + " - available: "
+                    + s.getAvailable()
+                    + "</li>");
         }
         out.println("</ui>");
     } else out.println("<p>No order!</p>");
+    int dough = (int) request.getAttribute("dough");
+    out.println("<p>Amount of Dough: " + dough + "</p>");
 %>
 <button onclick="location.href='/main'">continue order</button>
 </body>
